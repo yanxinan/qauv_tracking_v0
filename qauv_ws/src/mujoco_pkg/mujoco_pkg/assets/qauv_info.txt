@@ -1,0 +1,50 @@
+position
+body-prop1: 0.0891332 -0.0891332 -0.00535
+body-prop2: -0.0891332 -0.0891332 -0.00535
+body-prop3: -0.0891332 0.0891332 -0.00535
+body-prop4: 0.0891332 0.0891332 -0.00535
+L = 0.0891332*sqrt(2) = 0.126053
+body-steer: -0.0102289 -0.0650948 -0.0850500
+body-belt: 0.0256000 -0.0826079 -0.109692
+body-fing1: 0 -0.02 -0.163
+body-fing2: 0 0.02 -0.163
+body-cam: -0.035 0 0.11
+body-dep: -0.0136808 0.0375877 -0.1265
+
+
+volume
+body_no_blade: 0.00344285
+blade_left: 0.0000102380
+blade_right: 0.0000102655
+finger: 0.0000358456
+sum: 0.00355554
+
+body_no_prop: 0.00305114
+prop_left: 0.000114652
+prop_right: 0.000114678
+finger: 0.0000358456
+sum: 0.00358149
+
+body_no_steer: 0.00300781
+prop_left: 0.000114652
+prop_right: 0.000114678
+finger: 0.0000358456
+sum: 0.00353816
+
+sum_used: 0.00357000
+
+
+mass
+sum1(total): 3.625
+sum2(indep): 3.478
+sum_used: 3.55
+
+body_no_blade: 3.44
+blade_left: 0.01
+blade_right: 0.01
+finger: 0.035
+
+body_no_prop / body_no_steer: 2.80
+prop_left: 0.17
+prop_right: 0.17
+finger: 0.035

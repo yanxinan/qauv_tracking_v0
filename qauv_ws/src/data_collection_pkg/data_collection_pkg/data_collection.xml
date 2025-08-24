@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mujoco model="data_collection">
+    <option timestep="0.002" gravity="0 0 0" integrator="implicitfast" density="1000" viscosity="0.0009"/>
+
+    <compiler meshdir="/home/zb/qauv_ws/src/mujoco_pkg/mujoco_pkg/assets" angle="radian" autolimits="true"/>
+
+    <visual>
+        <global realtime="1"/>
+        <!-- <quality shadowsize="16384" numslices="28" offsamples="4"/> -->
+        <quality shadowsize="4096" numslices="28" offsamples="4"/>
+        <headlight diffuse="1 1 1" specular="0.5 0.5 0.5" active="1"/>
+        <rgba fog="1 1 1 1" haze="1 1 1 1"/>
+    </visual>
+
+    <asset>
+        <mesh file="body_no_steer.stl"/>
+        <mesh file="prop_left.stl"/>
+        <mesh file="prop_right.stl"/>
+        <mesh file="steer.stl"/>
+        <mesh file="belt.stl"/>
+        <mesh file="finger.stl"/>
+
+        <texture name="sky" type="skybox" file="/home/zb/qauv_ws/src/mujoco_pkg/mujoco_pkg/assets/desert.png" gridsize="3 4" gridlayout=".U..LFRB.D.."/>
+
+        <!-- <texture name="ground" type="2d" builtin="flat" rgb1="0.1 0.3 0.6" width="256" height="256"/> -->
+        <texture name="ground" type="2d" builtin="checker" rgb1="0.1 0.1 0.1" rgb2="0.9 0.9 0.9" width="256" height="256" mark="cross" markrgb="0.8 0.8 0.8"/>
+        <material name="ground" texture="ground" reflectance="0" texrepeat="1 1" texuniform="true"/>
+    </asset>
+
+    <worldbody>
+        <light type="directional" pos="30 30 30" dir="0 -1 -1" diffuse="0.5 0.5 0.5" ambient="0.3 0.3 0.3" specular="0.5 0.5 0.5"/>
+
+        <geom name="ground" type="plane" material="ground" pos="0 0 0" size="5 5 0.1"/>
+
+        <body name="object" pos="0 0 0.02">
+            <joint name="obj_joint" type="free"/>
+            <geom name="object" type="box" rgba="1 0 0 1" size="0.02 0.02 0.02" mass="1"/>
+        </body>
+
+        <body name="qauv" pos="0 0 0.6">
+            <joint name="qauv_joint" type="free"/>
+            <geom name="body_no_steer" type="mesh" mesh="body_no_steer" rgba="0.3 0.9 0.7 1" mass="2.5"/>
+            <geom name="prop_1" type="mesh" mesh="prop_left" pos="0.0891332 -0.0891332 -0.00535" rgba="0.3 0.3 0.3 1" mass="0.17"/>
+            <geom name="prop_2" type="mesh" mesh="prop_right" pos="-0.0891332 -0.0891332 -0.00535" rgba="0.3 0.3 0.3 1" mass="0.17"/>
+            <geom name="prop_3" type="mesh" mesh="prop_left" pos="-0.0891332 0.0891332 -0.00535" quat="0 0 0 1" rgba="0.3 0.3 0.3 1" mass="0.17"/>
+            <geom name="prop_4" type="mesh" mesh="prop_right" pos="0.0891332 0.0891332 -0.00535" quat="0 0 0 1" rgba="0.3 0.3 0.3 1" mass="0.17"/>
+            <geom name="steer" type="mesh" mesh="steer" pos="-0.0102289 -0.0650948 -0.08505" rgba="0.7 0.7 0.7 1" mass="0.09"/>
+            <geom name="belt" type="mesh" mesh="belt" pos="0.0256 -0.0826079 -0.109692" rgba="0.3 0.3 0.3 1" mass="0.01"/>
+            <geom name="balance_weight_1" type="box" pos="-0.062 0 -0.08" quat="0.7071 0 0 0.7071" rgba="0.5 0.5 0.5 1" size="0.01 0.002 0.01" mass="0.09"/>
+            <geom name="balance_weight_2" type="box" pos="0 0.062 -0.08" quat="1 0 0 0" rgba="0.5 0.5 0.5 1" size="0.01 0.002 0.01" mass="0.11"/>
+
+            <body name="fing_1" pos="0 -0.02 -0.163">
+                <geom name="fing_1" type="mesh" mesh="finger" rgba="0.7 0.7 0.7 1" mass="0.035"/>
+            </body>
+
+            <body name="fing_2" pos="0 0.02 -0.163" quat="0 0 0 1">
+                <geom name="fing_2" type="mesh" mesh="finger" rgba="0.7 0.7 0.7 1" mass="0.035"/>
+            </body>
+
+            <camera name="cam_tarcking" mode="targetbody" target="object" fovy="45" pos="-0.03 0 -0.11"/>
+            <camera name="cam_fixed" mode="fixed" fovy="45" pos="-0.03 0 -0.11" quat="0.707106 0 0 0.707106"/>
+        </body>
+
+        <!-- <body name="x_zh" pos="0.5 0 0.02">
+            <joint name="x_zh_joint" type="free"/>
+            <geom name="x_zh" type="box" rgba="0 1 0 1" size="0.02 0.02 0.02" mass="1"/>
+        </body>
+
+        <body name="y_zh" pos="0 0.5 0.02">
+            <joint name="y_zh_joint" type="free"/>
+            <geom name="y_zh" type="box" rgba="0 0 1 1" size="0.02 0.02 0.02" mass="1"/>
+        </body> -->
+    </worldbody>
+</mujoco>
